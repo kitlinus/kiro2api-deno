@@ -1,47 +1,4 @@
-Retries: number;
-  baseRetryDelay: number;
-    firstTokenTimeout: number;
-      firstTokenMaxRetries: number;
-        logLevel: string;
-	  rateLimitPerMinute: number;
-	    port: number;
-	    }
-
-	    interface ChatMessage {
-		      role: string;
-		        content: string | ContentBlock[] | null;
-			  name?: string;
-			    tool_calls?: ToolCall[];
-			      tool_call_id?: string;
-	    }
-
-	    interface ContentBlock {
-		      type: string;
-		        text?: string;
-			  id?: string;
-			    name?: string;
-			      input?: Record<string, unknown>;
-			        tool_use_id?: string;
-				  content?: string | ContentBlock[];
-				    is_error?: boolean;
-	    }
-
-	    interface ToolCall {
-		      id: string;
-		        type: string;
-			  function: {
-				      name: string;
-				          arguments: string;
-					    };
-					      index?: number;
-	    }
-
-	    interface Tool {
-		      type: string;
-		        function: {
-				    name: string;
-				        description?: string;
-					    pa/**
+/**
  * KiroGate - Deno Single-File Edition
  *
  * OpenAI & Anthropic 兼容的 Kiro API 网关
@@ -68,7 +25,50 @@ interface Settings {
   region: string;
   kiroCredsFile: string;
   tokenRefreshThreshold: number;
-  maxrameters?: Record<string, unknown>;
+  maxRetries: number;
+  baseRetryDelay: number;
+  firstTokenTimeout: number;
+  firstTokenMaxRetries: number;
+  logLevel: string;
+  rateLimitPerMinute: number;
+  port: number;
+}
+
+interface ChatMessage {
+  role: string;
+  content: string | ContentBlock[] | null;
+  name?: string;
+  tool_calls?: ToolCall[];
+  tool_call_id?: string;
+}
+
+interface ContentBlock {
+  type: string;
+  text?: string;
+  id?: string;
+  name?: string;
+  input?: Record<string, unknown>;
+  tool_use_id?: string;
+  content?: string | ContentBlock[];
+  is_error?: boolean;
+}
+
+interface ToolCall {
+  id: string;
+  type: string;
+  function: {
+    name: string;
+    arguments: string;
+  };
+  index?: number;
+}
+
+interface Tool {
+  type: string;
+  function: {
+    name: string;
+    description?: string;
+    parameters?: Record<string, unknown>;
   };
 }
 
